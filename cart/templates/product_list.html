@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+table, th, td {
+  border: 1px solid black;
+}
+
+
+    </style>
+</head>
+<body>
+
+<h2>Table With Border</h2>
+
+<p>Use the CSS border property to add a border to the table.</p>
+
+<table style="width:100%">
+    <tr>
+        <th>Product name</th>
+        <th>Product description</th>
+        <th>Add to cart</th>
+    </tr>
+    {%for product in products %}
+    <tr>
+        <td>{{product.name}}</td>
+        <td>{{product.description}}</td>
+        <td><input id="submit" type="button" value="Click" data_url/></td>
+
+    </tr>
+    {%endfor%}
+</table>
+</body>
+<script>
+    $(function(){
+         $('form').on('submit', function(e){
+             e.preventDefault();
+             $.ajax({
+                 url: $(this).attr('action'),
+                 method: $(this).attr('method'),
+                 success: function(data){ $('#target').html(data) }
+             });
+         });
+    });
+
+</script>
+</html>
